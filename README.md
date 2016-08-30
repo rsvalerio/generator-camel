@@ -1,4 +1,4 @@
-# generator-camel [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# generator-camel [![NPM version][npm-image]][npm-url] [![Build Status](https://travis-ci.org/rsvalerio/generator-camel.png?branch=master)](https://travis-ci.org/rsvalerio/generator-camel) [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status](https://coveralls.io/repos/github/rsvalerio/generator-camel/badge.svg?branch=master)](https://coveralls.io/github/rsvalerio/generator-camel?branch=master)
 > 
 
 ## Installation

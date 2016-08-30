@@ -1,8 +1,8 @@
 {
   "name": "generator-camel",
-  "version": "0.0.0",
-  "description": "",
-  "homepage": "",
+  "version": "0.0.1",
+  "description": "Apache Camel project Generator",
+  "homepage": "github.com/rsvalerio/generator-camel",
   "author": {
     "name": "Rodrigo Valerio",
     "email": "rsvalerio@gmail.com",
@@ -13,7 +13,9 @@
   ],
   "main": "generators/index.js",
   "keywords": [
-    "",
+    "camel",
+    "java",
+    "apache",
     "yeoman-generator"
   ],
   "dependencies": {
