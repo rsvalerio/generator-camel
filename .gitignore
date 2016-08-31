@@ -1,3 +1,9 @@
 node_modules
 coverage
 .idea
+temp
+tmp
+npm-debug.log
+.tmp
+.temp
+.log
