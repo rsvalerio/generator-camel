@@ -1,0 +1,2 @@
+spring.main.sources: <%= userProps.package %>.routes.MyRouter
+msg: HELLO_FROM_APPLICATION_YML

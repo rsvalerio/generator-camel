@@ -23,11 +23,5 @@ module.exports = [
     name: 'docker',
     message: 'Dockerize the app?',
     default: true
-  },
-  {
-    type: 'confirm',
-    name: 'hal',
-    message: 'Install the Hal Browser?',
-    default: true
   }
 ];

@@ -3,8 +3,17 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var prompts = require('./lib/prompts');
+var glob = require('glob');
+var path = require('path');
+var mkdirp = require('mkdirp');
 
 module.exports = yeoman.Base.extend({
+  initializing: {
+    files: function () {
+      this.folders = glob.sync('**/*/', {cwd: path.join(__dirname, 'templates')});
+      this.files = glob.sync('**/*', {cwd: path.join(__dirname, 'templates'), nodir: true});
+    }
+  },
   prompting: function () {
     this.log(yosay(
       chalk.red('Apache Camel') + ' generator!'
@@ -16,14 +25,34 @@ module.exports = yeoman.Base.extend({
     }.bind(this));
   },
 
-  writing: function () {
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
-    );
+  writing: {
+    app: function () {
+      var userProps = this.props;
+      userProps.options = this.options;
+
+      var packageFolder = userProps.package.replace(/\./g, '/');
+
+      var src = 'src/main/java';
+
+      this.log('Creating folders');
+
+      this.folders.forEach(function (folder) {
+        mkdirp.sync(folder.replace(/src\/main\/java/g, path.join(src, packageFolder)));
+      });
+
+      this.log('Copying files');
+
+      for (var i = 0; i < this.files.length; i++) {
+        this.fs.copyTpl(
+          this.templatePath(this.files[i]),
+          this.destinationPath(this.files[i].replace(/src\/main\/java/g, path.join(src, packageFolder))),
+          {userProps: userProps}
+        );
+      }
+    }
   },
 
   install: function () {
-    // this.installDependencies();
+    //this.spawnCommandSync('mvn', ['package']);
   }
 });
