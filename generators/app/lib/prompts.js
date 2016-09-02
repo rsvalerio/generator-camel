@@ -1,7 +1,4 @@
-/**
- * Created by rsvalerio on 31/8/16.
- */
-
+'use strict';
 var path = require('path');
 var pkg = require(path.join(__dirname, '../', '../', '../', 'package.json'));
 var appName = pkg.name;
