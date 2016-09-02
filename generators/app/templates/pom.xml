@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <version>1.0.0-SNAPSHOT</version>
 
-  <name>A Camel Spring Boot Route</name>
+  <name><%= userProps.appName %></name>
   <url>http://www.<%= userProps.appName %>.org</url>
 
   <properties>

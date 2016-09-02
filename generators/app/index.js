@@ -53,6 +53,6 @@ module.exports = yeoman.Base.extend({
   },
 
   install: function () {
-    //this.spawnCommandSync('mvn', ['package']);
+    // this.spawnCommandSync('mvn', ['package']);
   }
 });
