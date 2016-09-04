@@ -3,6 +3,8 @@ node_js:
 - v6
 - v5
 deploy:
+  on:
+    tags: true
   provider: npm
   email: "rsvalerio@gmail.com"
   api_key:
