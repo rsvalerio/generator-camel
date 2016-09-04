@@ -4,8 +4,6 @@ var glob = require('glob');
 var path = require('path');
 var mkdirp = require('mkdirp');
 
-var prompts = require('./lib/prompts');
-
 module.exports = yeoman.Base.extend({
   initializing: {
     files: function () {
@@ -29,6 +27,17 @@ module.exports = yeoman.Base.extend({
     this.log('                          \\____|  \\__,_| |_| |_| |_|  \\___| |_|');
     this.log('');
 
+    var prompts = [{
+      type: 'input',
+      name: 'appName',
+      message: 'App name: ',
+      default: this.appname
+    }, {
+      type: 'input',
+      name: 'package',
+      message: 'Package name: ',
+      default: 'com.' + this.appname
+    }];
     return this.prompt(prompts).then(function (props) {
       // To access props later use this.props.someAnswer;
       this.props = props;
