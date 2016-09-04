@@ -1,4 +1,4 @@
-package com.rsvalerio.beans;
+package <%= userProps.package %>.beans;
 
 import org.apache.camel.Exchange;
 import org.springframework.beans.factory.annotation.Value;

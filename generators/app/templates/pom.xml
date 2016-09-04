@@ -16,12 +16,9 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <spring.boot.version><%= userProps.options.springBootVersion%></spring.boot.version>
     <camel.spring.boot.version><%= userProps.options.camelSpringBootVersion%></camel.spring.boot.version>
-    <% if (userProps.docker) { %>
     <docker.maven.plugin.version><%= userProps.options.dockerMavenPluginVersion%></docker.maven.plugin.version>
-    <% } %>
   </properties>
 
   <dependencyManagement>
@@ -57,6 +54,8 @@
 
   <build>
     <plugins>
+
+      <!-- Executable jar -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
@@ -74,6 +73,29 @@
         </executions>
       </plugin>
 
+      <!-- Dockerize app -->
+      <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <version>${docker.maven.plugin.version}</version>
+        <configuration>
+          <forceTags>true</forceTags>
+          <imageName>${project.artifactId}</imageName>
+          <baseImage>anapsix/alpine-java</baseImage>
+          <runs>sh -c 'touch /${project.build.finalName}.jar'</runs>
+          <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+          <imageTags>
+            <imageTag>${project.version}</imageTag>
+          </imageTags>
+          <resources>
+            <resource>
+              <targetPath>/</targetPath>
+              <directory>${project.build.directory}</directory>
+              <include>${project.build.finalName}.jar</include>
+            </resource>
+          </resources>
+        </configuration>
+      </plugin>
 
     </plugins>
 

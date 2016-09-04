@@ -14,11 +14,5 @@ module.exports = [
     name: 'package',
     message: 'Package name: ',
     default: 'com.' + appName
-  },
-  {
-    type: 'confirm',
-    name: 'docker',
-    message: 'Dockerize the app?',
-    default: true
   }
 ];

@@ -2,10 +2,11 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
-var prompts = require('./lib/prompts');
 var glob = require('glob');
 var path = require('path');
 var mkdirp = require('mkdirp');
+
+var prompts = require('./lib/prompts');
 
 module.exports = yeoman.Base.extend({
   initializing: {
