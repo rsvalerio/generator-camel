@@ -3,7 +3,6 @@ var path = require('path');
 var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
 var basicProps = {};
-var basicOpts = {};
 
 describe('generator-camel:app', function () {
 
@@ -11,10 +10,6 @@ describe('generator-camel:app', function () {
     basicProps.appName = 'MyAppMock';
     basicProps.package = 'com.generator.mock';
     basicProps.packageFolder = 'com/generator/mock';
-    basicProps.docker = true;
-    basicOpts.springBootVersion = '1.0.0';
-    basicOpts.camelSpringBootVersion = '2.0.0';
-    basicOpts.dockerMavenPluginVersion = '5.0.0';
   });
 
   describe('Should properly scaffold with default config', function () {
@@ -23,10 +18,6 @@ describe('generator-camel:app', function () {
       return helpers.run(path.join(__dirname, '../generators/app'))
         .withPrompts({ appName: basicProps.appName })
         .withPrompts({ package: basicProps.package })
-        .withPrompts({ docker: basicProps.docker })
-        .withOptions({ springBootVersion: basicOpts.springBootVersion })
-        .withOptions({ camelSpringBootVersion: basicOpts.camelSpringBootVersion })
-        .withOptions({ dockerMavenPluginVersion: basicOpts.dockerMavenPluginVersion })
         .toPromise();
     });
 
@@ -44,9 +35,6 @@ describe('generator-camel:app', function () {
     it('Should create pom.xml with default content', function () {
       assert.fileContent('pom.xml', new RegExp('<groupId>' + basicProps.package + '</groupId>') );
       assert.fileContent('pom.xml', new RegExp('<artifactId>' + basicProps.appName + '</artifactId>') );
-      assert.fileContent('pom.xml', new RegExp('<spring.boot.version>' + basicOpts.springBootVersion + '</spring.boot.version>') );
-      assert.fileContent('pom.xml', new RegExp('<camel.spring.boot.version>' + basicOpts.camelSpringBootVersion + '</camel.spring.boot.version>') );
-      assert.fileContent('pom.xml', new RegExp('<docker.maven.plugin.version>' + basicOpts.dockerMavenPluginVersion + '</docker.maven.plugin.version>') );
     });
   });
 
