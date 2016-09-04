@@ -49,7 +49,6 @@
   },
   "repository": "rsvalerio/generator-camel",
   "scripts": {
-    "prepublish": "gulp prepublish",
     "test": "gulp test"
   },
   "license": "Apache-2.0"
