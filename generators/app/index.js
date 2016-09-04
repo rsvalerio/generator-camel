@@ -1,7 +1,5 @@
 'use strict';
 var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
 var glob = require('glob');
 var path = require('path');
 var mkdirp = require('mkdirp');
@@ -16,9 +14,20 @@ module.exports = yeoman.Base.extend({
     }
   },
   prompting: function () {
-    this.log(yosay(
-      chalk.red('Apache Camel') + ' generator!'
-    ));
+
+    this.log('      _                             _');
+    this.log('     / \\     _ __     __ _    ___  | |__     ___');
+    this.log('    / _ \\   | \'_ \\   / _` |  / __| | \'_ \\   / _ \\');
+    this.log('   / ___ \\  | |_) | | (_| | | (__  | | | | |  __/');
+    this.log('  /_/   \\_\\ | .__/   \\__,_|  \\___| |_| |_|  \\___|');
+    this.log('            |_|');
+
+    this.log('                           ____                              _');
+    this.log('                          / ___|   __ _   _ __ ___     ___  | |');
+    this.log('                         | |      / _` | | \'_ ` _ \\   / _ \\ | |');
+    this.log('                         | |___  | (_| | | | | | | | |  __/ | |');
+    this.log('                          \\____|  \\__,_| |_| |_| |_|  \\___| |_|');
+    this.log('');
 
     return this.prompt(prompts).then(function (props) {
       // To access props later use this.props.someAnswer;
