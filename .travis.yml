@@ -1,4 +1,9 @@
 language: node_js
 node_js:
-  - v6
-  - v5
+- v6
+- v5
+deploy:
+  provider: npm
+  email: "rsvalerio@gmail.com"
+  api_key:
+    secure: SdDWJhfwDpaFvAPYt0X8gWWCVRKEvPlJ8X6eaWtsKqWm7Dk0CrfLn44gcCiRHfiU6se6VsmZbCCoExzN8/9JkbDcvOwPSq5aInGzCraA9Jl2AK8wB7nLOFR38qAAQUXholciwFbJm+veHVLkN4j4ksvatvAcMAOJZgp6SH/LEG6dK7g7ACv0cS2Kai5N5ukRiPFWm2pnr31+YxnJ4RmXWAxjdkLJe7NUjf6qRmCgJNeIoVJgt3tZYk6jCpB0lKIklLwbtnM/R5qa/OaHrNBlaPOuehVpfaaxejR9PUNwxM1FpDVAN2RJX5zq56xM2j6s9bMTXXlSpg+wk9DzxmSOkwvyusQQPuBAbP5mAQv7C2rYOmeKBWyWIESfucDpl/z6H2wWC3jeuGJAvB7uc0mMOsAtw6voJL3Kp5KfS3jSm+5FxAfoNSRmb1dSRSjzDHA1+UAxNBY7RFguXG9E9ISxq3XSb6L+wxtMlhr4u+ti7IP1kmmbYEeyKCcxyfFqELRmSkCIpUcXFvX6XA0zb6tnV4j/KYpnYxD80fGhjZNc+8Tlu7A518sVBrSqrErFvvsdmwAhA0vhY+z57z2XRkqMDmEX1IaAjXPZjGsIaVZtyfzLjpMWC1+KkLpHVST6VTq3zkFW4Woeu4D3rH1c+RP1ZakaLALSnHivb54vNp5nEEs=
