@@ -1,6 +1,6 @@
 {
   "name": "generator-camel",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "Apache Camel project Generator",
   "homepage": "https://github.com/rsvalerio/generator-camel",
   "author": {
