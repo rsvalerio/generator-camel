@@ -12,18 +12,20 @@
 
 #### To generate a new project, we assume you have pre-installed
 
- - [Node.js](https://nodejs.org/)
+ - [Node.js](https://nodejs.org/) 
 ```bash
 brew install nodejs
 ``` 
+
  - [Yeoman](http://yeoman.io)
- ```bash
- npm install -g yeoman
- ```
+```bash
+npm install -g yeoman
+```
+
  - [Camel Generator](https://github.com/rsvalerio/generator-camel)
- ```bash
- npm install -g generator-camel
- ```
+```bash
+npm install -g generator-camel
+```
 
 #### To build the generated project, we assume you have pre-installed
  - [Maven](http://maven.apache.org/)
@@ -31,9 +33,7 @@ brew install nodejs
 brew install maven
 ```
  - [Docker](https://docs.docker.com/engine/installation/)
-```bash
-brew install maven
-```
+
 
 ## Usage
 
@@ -69,8 +69,10 @@ mvn spring-boot:run
 
 #### 5. Running project as docker container
 
+App name is used to name docker image too.
+
 ```bash
-docker run -t springio/gs-spring-boot-docker
+docker run -t [your_app_image]
 
 ```
 
