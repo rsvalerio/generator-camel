@@ -1,11 +1,11 @@
 [![NPM version][npm-image]][npm-url] [![Travis Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][coveralls-image]][coveralls-url]
 
-# Apache Camel with Spring Boot yeoman generator
+# Apache Camel + Spring Boot + Docker project generator
 
  * Brings SpringBoot auto-configuration to Apache Camel
  * Auto-detection and spring context registration of producers templates, consumer templates and type converter, thanks to [Camel Spring Boot](http://camel.apache.org/spring-boot.html) component.
- * Generates an executable jar that can be easily started as Unix/Linux services using either init.d or systemd, thansk to [Spring Boot Maven Plugin](http://docs.spring.io/spring-boot/docs/1.4.0.RELEASE/maven-plugin/index.html).
- * Easy creation of docker image for the aplication, using spotify provided [Docker Maven Plugin](https://github.com/spotify/docker-maven-plugin)
+ * Generates an executable jar that can be easily started as Unix/Linux services using either init.d or systemd, thanks to [Spring Boot Maven Plugin](http://docs.spring.io/spring-boot/docs/1.4.0.RELEASE/maven-plugin/index.html).
+ * Easy creation of docker image for the application, using spotify provided [Docker Maven Plugin](https://github.com/spotify/docker-maven-plugin)
 
 
 ## Installation
