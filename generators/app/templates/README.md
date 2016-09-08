@@ -1,4 +1,4 @@
-mem-fs-editor
+<%= userProps.appName %>
 =============
 
 #### 1. Build the project
@@ -28,10 +28,8 @@ mvn spring-boot:run
 
 As a docker container
 
-***App name is used to name docker image***
-
 ```bash
-docker run -t your_app
+docker run -t <%= userProps.appName %>
 ```
 
 #### 3. Release (optional)
@@ -56,7 +54,16 @@ docker run -d --name=gitblit -p 8080:8080 -p 8443:8443 -p 9418:9418 -p 29418:294
 
 Running a local, ephemeral nexus2 maven repo server
 ```bash
-docker run -d -p 8081:8081 --name nexus2 -e MAX_HEAP=256m sonatype/nexus
+docker run -d --name nexus2 -p 8081:8081 -e MAX_HEAP=256m sonatype/nexus
+```
+
+Parar e inicicar o container
+
+```bash
+docker stop nexus2
+docker stop gitlib
+docker start nexus2
+docker start gitlib
 ```
 
  * [Maven Release Plugin](http://maven.apache.org/maven-release/maven-release-plugin/) use <servers> tag in settings.xml as credentials to authenticate on each server, SCM repository and maven repository server e.g.
