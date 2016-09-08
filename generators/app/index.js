@@ -37,6 +37,43 @@ module.exports = yeoman.Base.extend({
       name: 'package',
       message: 'Package name: ',
       default: 'com.' + this.appname
+    }, {
+      type: 'confirm',
+      name: 'release',
+      message: 'Use Maven Release Plugin?',
+      default: false
+    }, {
+      type: 'input',
+      name: 'releaseScmUrl',
+      message: 'Project Git http url',
+      default: 'http://localhost:8080/r/' + this.appname + '.git',
+      when: function ( props ) {
+        return props.release;
+      }
+    }, {
+      type: 'input',
+      name: 'releaseRepoUrl',
+      message: 'Project Maven Repository Url)',
+      default: 'http://localhost:8081/content/repositories/releases/',
+      when: function ( props ) {
+        return props.release;
+      }
+    }, {
+      type: 'input',
+      name: 'releaseScmServerId',
+      message: 'Git Server ID in your maven settings.xml?',
+      default: 'git',
+      when: function ( props ) {
+        return props.release;
+      }
+    }, {
+      type: 'input',
+      name: 'releaseRepoServerId',
+      message: 'Maven Repo ID in your maven settings.xml',
+      default: 'nexus2',
+      when: function ( props ) {
+        return props.release;
+      }
     }];
     return this.prompt(prompts).then(function (props) {
       // To access props later use this.props.someAnswer;
@@ -62,12 +99,19 @@ module.exports = yeoman.Base.extend({
       this.log('Copying files');
 
       for (var i = 0; i < this.files.length; i++) {
+
         this.fs.copyTpl(
           this.templatePath(this.files[i]),
           this.destinationPath(this.files[i].replace(/src\/main\/java/g, path.join(src, packageFolder))),
           {userProps: userProps}
         );
       }
+
+      this.log('Copying dot files');
+      this.fs.copy(
+        this.templatePath('.*'),
+        this.destinationRoot()
+      );
     }
   },
 

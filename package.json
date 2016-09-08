@@ -1,7 +1,7 @@
 {
   "name": "generator-camel",
   "version": "1.0.0",
-  "description": "Apache Camel + Spring Boot + Docker project generator",
+  "description": "Apache Camel + Spring Boot + Docker + Release plugin",
   "homepage": "https://github.com/rsvalerio/generator-camel",
   "author": {
     "name": "Rodrigo Valerio",
