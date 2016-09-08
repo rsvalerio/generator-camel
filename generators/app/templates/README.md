@@ -1,34 +1,84 @@
-Spring Boot Example
-===================
+mem-fs-editor
+=============
 
-This example shows how to work with the simple Camel application based on the Spring Boot.
+#### 1. Build the project
 
-The example generates messages using timer trigger, writes them to the standard output and the mock
-endpoint (for testing purposes).
+Generate the JAR package.
 
-This example exposes Jolokia API and Spring Boot actuators endpoints (like metrics) via the webmvc endpoint. We consider
-this as the best practice - Spring Boot applications with these API exposed can be easily monitored and managed by the
-3rd parties tools.
+```bash
+mvn package
+```
 
-We recommend to package your application as a fat WAR. Fat WARs can be executed just as regular fat jars, but you can also
-deploy them to the servlet containers like Tomcat. Fat WAR approach gives you the deployment flexibility, so we highly
-recommend it.
+Generate with the Docker image
 
-You will need to compile this example first:
-  mvn install
+***Depends on a docker running instance***
 
-To run the example type
-  mvn spring-boot:run
+```bash
+mvn package docker:build
+```
 
-You can also execute the fat WAR directly:
+#### 2. Running the project
 
-  java -jar target/csv-to-bean-1.0.0-SNAPSHOT.war
 
-You will see the message printed to the console every second.
+Using maven
 
-To stop the example hit ctrl + c
+```bash
+mvn spring-boot:run
+```
 
-For more help see the Apache Camel documentation
+As a docker container
 
-    http://camel.apache.org/
+***App name is used to name docker image***
 
+```bash
+docker run -t your_app
+```
+
+#### 3. Release (optional)
+
+ * Doing a simple release (will ask for release versions information)
+```bash
+mvn release:prepare
+mvn release:perform
+```
+
+ * We need a source code repository ([gitblit](http://gitblit.com/) git) and binary repository ([nexus](https://www.sonatype.com/nexus-repository-oss) maven).
+
+ * If you don't have the necessary repos, just start a nexus and a gitblit docker container to see releases working
+
+Running a local, ephemeral gitblit git server
+
+*** Don't forget to create a remote git repo, add it as a remote and do the first commit, before release ***
+
+```bash
+docker run -d --name=gitblit -p 8080:8080 -p 8443:8443 -p 9418:9418 -p 29418:29418 jacekkow/gitblit //source code repo
+```
+
+Running a local, ephemeral nexus2 maven repo server
+```bash
+docker run -d -p 8081:8081 --name nexus2 -e MAX_HEAP=256m sonatype/nexus
+```
+
+ * [Maven Release Plugin](http://maven.apache.org/maven-release/maven-release-plugin/) use <servers> tag in settings.xml as credentials to authenticate on each server, SCM repository and maven repository server e.g.
+
+```xml
+	<servers>
+		<server>
+			<id>gitblit</id>
+			<username>admin</username>
+			<password>admin</password>
+		</server>
+		<server>
+			<id>nexus</id>
+			<username>admin</username>
+			<password>admin123</password>
+		</server>
+	</servers>
+```
+
+ * With maven 3.2.1+, the password can be encrypted as. Details [here](https://maven.apache.org/guides/mini/guide-encryption.html).
+
+```bash
+mvn --encrypt-master-password
+mvn --encrypt-password
+```
