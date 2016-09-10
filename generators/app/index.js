@@ -46,7 +46,7 @@ module.exports = yeoman.Base.extend({
       type: 'input',
       name: 'releaseScmUrl',
       message: 'Project Git http url',
-      default: 'http://localhost:8080/r/' + this.appname + '.git',
+      default: 'http://127.0.0.1:8080/r/' + this.appname + '.git',
       when: function ( props ) {
         return props.release;
       }
@@ -54,7 +54,7 @@ module.exports = yeoman.Base.extend({
       type: 'input',
       name: 'releaseRepoUrl',
       message: 'Project Maven Repository Url)',
-      default: 'http://localhost:8081/content/repositories/releases/',
+      default: 'http://127.0.0.1:8081/content/repositories/releases/',
       when: function ( props ) {
         return props.release;
       }
@@ -70,7 +70,7 @@ module.exports = yeoman.Base.extend({
       type: 'input',
       name: 'releaseRepoServerId',
       message: 'Maven Repo ID in your maven settings.xml',
-      default: 'nexus2',
+      default: 'nexus',
       when: function ( props ) {
         return props.release;
       }

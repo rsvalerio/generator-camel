@@ -1,0 +1,13 @@
+version: '2'
+services:
+  gitblit:
+    image: jacekkow/gitblit
+    ports:
+      - 8080:8080
+      - 8443:8443
+      - 9418:9418
+      - 29418:29418
+  nexus:
+    image: sonatype/nexus
+    ports:
+      - 8081:8081

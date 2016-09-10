@@ -54,7 +54,7 @@ describe('generator-camel:app', function () {
         .withPrompts({ releaseScmUrl: 'http://localhost:8080/r/hellodatarest.git' })
         .withPrompts({ releaseScmServerId: 'gitblit' })
         .withPrompts({ releaseRepoUrl: 'http://localhost:8081/content/repositories/releases/' })
-        .withPrompts({ releaseRepoServerId: 'nexus2' })
+        .withPrompts({ releaseRepoServerId: 'nexus' })
         .toPromise();
     });
 

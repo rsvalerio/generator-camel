@@ -82,7 +82,6 @@ mvn package
 
 Generate with the Docker image
 
-***Depends on a docker running instance***
 
 ```bash
 mvn package docker:build
@@ -99,38 +98,41 @@ mvn spring-boot:run
 
 As a docker container
 
-***App name is used to name docker image***
-
 ```bash
-docker run -t your_app
+docker run -t <%= userProps.appName %>
 ```
 
 #### 5. Release (optional)
 
- * Doing a simple release (will ask for release versions information)
+1 - Initialize local git repository and do the first commit, at project root directory
+
+```bash
+git init
+git add .
+git commit -am'Initial commit'
+```
+
+2 - Start a local maven and git servers using docker-compose.
+
+```bash
+cd src/main/docker/ci
+docker-compose up -d
+```
+
+3 - Create the remote source code repository 
+
+```bash
+docker-compose exec --user gitblit gitblit git init /opt/gitblit-data/git/<%= userProps.appName %>.git --bare
+```
+
+4 - Doing a simple release (will ask for release versions information)
+
 ```bash
 mvn release:prepare
 mvn release:perform
 ```
 
- * We need a source code repository ([gitblit](http://gitblit.com/) git) and binary repository ([nexus](https://www.sonatype.com/nexus-repository-oss) maven).
-
- * If you don't have the necessary repos, just start a nexus and a gitblit docker container to see releases working
-
-Running a local, ephemeral gitblit git server
-
-*** Don't forget to create a remote git repo, add it as a remote and do the first commit, before release ***
-
-```bash
-docker run -d --name=gitblit -p 8080:8080 -p 8443:8443 -p 9418:9418 -p 29418:29418 jacekkow/gitblit //source code repo
-```
-
-Running a local, ephemeral nexus2 maven repo server
-```bash
-docker run -d -p 8081:8081 --name nexus2 -e MAX_HEAP=256m sonatype/nexus
-```
-
- * [Maven Release Plugin](http://maven.apache.org/maven-release/maven-release-plugin/) use <servers> tag in settings.xml as credentials to authenticate on each server, SCM repository and maven repository server e.g.
+[Maven Release Plugin](http://maven.apache.org/maven-release/maven-release-plugin/) use <servers> tag in settings.xml as credentials to authenticate on each server, SCM repository and maven repository server e.g.
 
 ```xml
 	<servers>
@@ -147,7 +149,7 @@ docker run -d -p 8081:8081 --name nexus2 -e MAX_HEAP=256m sonatype/nexus
 	</servers>
 ```
 
- * With maven 3.2.1+, the password can be encrypted as. Details [here](https://maven.apache.org/guides/mini/guide-encryption.html).
+With maven 3.2.1+, the password can be encrypted as. Details [here](https://maven.apache.org/guides/mini/guide-encryption.html).
 
 ```bash
 mvn --encrypt-master-password
