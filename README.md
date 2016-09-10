@@ -12,33 +12,33 @@
 
 #### To generate a new project, we assume you have pre-installed
 
- - [Node.js](https://nodejs.org/)
+[Node.js](https://nodejs.org/)
 
 ```bash
 brew install nodejs
 ``` 
 
- - [Yeoman](http://yeoman.io)
+[Yeoman](http://yeoman.io)
 
 ```bash
 npm install -g yeoman
 ```
 
- - [Camel Generator](https://github.com/rsvalerio/generator-camel)
+[Camel Generator](https://github.com/rsvalerio/generator-camel)
 
 ```bash
 npm install -g generator-camel
 ```
 
 #### To build the generated project, we assume you have pre-installed
- - [Maven](http://maven.apache.org/)
+
+[Maven](http://maven.apache.org/)
 
 ```bash
 brew install maven
 ```
 
- - Docker - [Installation](https://docs.docker.com/engine/installation/)
-
+Docker - [Installation](https://docs.docker.com/engine/installation/)
 
 ## Usage
 
@@ -89,7 +89,6 @@ mvn package docker:build
 
 #### 4. Running the project
 
-
 Using maven
 
 ```bash
@@ -99,8 +98,12 @@ mvn spring-boot:run
 As a docker container
 
 ```bash
-docker run -t <%= userProps.appName %>
+docker run -t appName
 ```
+
+[As a Linux service](http://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html#deployment-service)
+
+[As a Windows Service](http://docs.spring.io/spring-boot/docs/current/reference/html/deployment-windows.html)
 
 #### 5. Release (optional)
 
@@ -122,7 +125,7 @@ docker-compose up -d
 3 - Create the remote source code repository 
 
 ```bash
-docker-compose exec --user gitblit gitblit git init /opt/gitblit-data/git/<%= userProps.appName %>.git --bare
+docker-compose exec --user gitblit gitblit git init /opt/gitblit-data/git/appName.git --bare
 ```
 
 4 - Doing a simple release (will ask for release versions information)
